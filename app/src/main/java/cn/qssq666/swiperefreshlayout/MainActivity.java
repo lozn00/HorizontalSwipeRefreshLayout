@@ -85,7 +85,8 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            TextView textView = (TextView) LayoutInflater.from(parent.getContext()).inflate(R.layout.view_item_text, parent, false);
+            View textView = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_item_text, parent, false);
+
 //            int padding = 10;
 //            textView.setPadding(padding, padding, padding, padding);
             return new MyViewHolder(textView);
@@ -107,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            textView = (TextView) itemView;
+            textView = (TextView) itemView.findViewById(android.R.id.text1);
         }
     }
 }

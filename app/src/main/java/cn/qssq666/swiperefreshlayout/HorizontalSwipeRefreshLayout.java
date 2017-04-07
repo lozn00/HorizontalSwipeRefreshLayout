@@ -15,11 +15,11 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
-import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Transformation;
 import android.widget.AbsListView;
+import android.widget.FrameLayout;
 
 /**
  * Created by luozheng on 2016/5/26.  qssq.space
@@ -56,7 +56,7 @@ import android.widget.AbsListView;
  * refresh of the content wherever this gesture is used.
  * </p>
  */
-public class HorizontalSwipeRefreshLayout extends ViewGroup implements android.support.v4.view.NestedScrollingParent,
+public class HorizontalSwipeRefreshLayout extends FrameLayout implements android.support.v4.view.NestedScrollingParent,
         android.support.v4.view.NestedScrollingChild {
     // Maps to ProgressBar.Large style
     public static final int LARGE = 0;
@@ -622,8 +622,10 @@ public class HorizontalSwipeRefreshLayout extends ViewGroup implements android.s
         }
         mTarget.measure(MeasureSpec.makeMeasureSpec(
                 getMeasuredWidth() - getPaddingLeft() - getPaddingRight(),
-                MeasureSpec.EXACTLY), MeasureSpec.makeMeasureSpec(
-                getMeasuredHeight() - getPaddingTop() - getPaddingBottom(), MeasureSpec.EXACTLY));
+                MeasureSpec.EXACTLY),
+                MeasureSpec.makeMeasureSpec(
+                        getMeasuredHeight() - getPaddingTop() - getPaddingBottom(), MeasureSpec.EXACTLY));
+
         mCircleView.measure(MeasureSpec.makeMeasureSpec(mCircleWidth, MeasureSpec.EXACTLY),
                 MeasureSpec.makeMeasureSpec(mCircleHeight, MeasureSpec.EXACTLY));
         if (!mUsingCustomStart && !mOriginalOffsetCalculated) {
